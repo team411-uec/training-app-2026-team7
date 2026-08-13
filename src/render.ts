@@ -36,7 +36,15 @@ export function renderCell(index: number, color: string): void {
   console.log("塗ったマス:", index);
 
   // TODO（ステップ1）: ここに DOM 操作を書いて、マスの色を変える。
+  // 全マスで構成されるオブジェクトを定数にする
+  const cells =  document.getElementsByClassName("pixel-cell");
+  //押されたマスを定数にする
+  const pushedcell = cells[index] as HTMLElement ;
+  //押されたマスの背景色を変える。AIによるとifでpushedcellがあるときに動くようにしたほうがerrorを防げるらしい。
+  if (pushedcell)
+  pushedcell.style.backgroundColor = color;
 }
 
 // 拡張ポイント（ステップ2以降）。必要になったら関数を足す。
 //  - カラーパレットの色見本を並べる: 色ボタンを document.createElement で作って表示する関数を足す。
+//お試し
