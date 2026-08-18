@@ -3,7 +3,7 @@
 // キャンバスを用意してマス目を描き、マスのクリックと全消去ボタンに処理を結びつける。
 // この層は完成済み（ステップ1で render.ts を実装すれば動く）。
 
-import { clearCanvas, paintCell, getCellColor, GRID_SIZE, PAINT_COLOR, DEFAULT_COLOR, EMPTY_COLOR, getPaintColor, setPaintColor } from "./canvas";
+import { clearCanvas, paintCell, getCellColor, getPaintColor, setPaintColor, GRID_SIZE, PAINT_COLOR, PALETTE_COLORS } from "./canvas";
 import { renderGrid, renderCell } from "./render";
 
 function main(): void {
@@ -38,15 +38,22 @@ function main(): void {
     }
   });
 
-  const whiteButton = document.getElementById("white-button");
-  whiteButton?.addEventListener("click", () => {
-    setPaintColor(EMPTY_COLOR)
+  const paletteContainer = document.getElementById("palette");
+  console.log("paletteContainer:", paletteContainer);
+
+  // colorpaletteの要素の数だけ、その色に対応したボタンを生成する
+  PALETTE_COLORS.forEach((color) => {
+  const button = document.createElement("button");
+  button.style.backgroundColor = color;
+  button.className = "color-button";
+
+  // ボタンを押した時の処理
+  button.addEventListener("click", () => {
+    setPaintColor(color);
   });
 
-  const blackButton = document.getElementById("black-button");
-  blackButton?.addEventListener("click", () => {
-    setPaintColor(DEFAULT_COLOR)
-  });
+  paletteContainer?.appendChild(button);
+});
 }
 
 main();

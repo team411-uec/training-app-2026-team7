@@ -10,6 +10,13 @@ export const GRID_SIZE = 16;
 export const DEFAULT_COLOR = "#000000"; // 黒
 export const EMPTY_COLOR = "#ffffff"; // 白
 export let PAINT_COLOR = DEFAULT_COLOR; // 塗るときの色
+export const PALETTE_COLORS = [
+  "#000000", // 黒
+  "#ffffff", // 白
+  "#ff0000", // 赤
+  "#00ff00", // 緑
+  "#0000ff", // 青
+];
 
 // 各マスの色を1次元配列で持つ（長さは GRID_SIZE×GRID_SIZE）。
 // export していないので外部からは直接触れず、下の関数を通して操作する。
@@ -46,4 +53,5 @@ export function getPaintColor() {
 // 色を変更する関数を用意しておく
 export function setPaintColor(newColor: string) {
   PAINT_COLOR = newColor;
+  console.log("塗るときの色:", PAINT_COLOR);
 }

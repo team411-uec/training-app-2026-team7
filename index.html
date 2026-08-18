@@ -38,9 +38,23 @@
         cursor: pointer;
       }
 
+      /* flexでボタンを横並びにして、centerでボタンを横一列にそろえる。 */
+      .controls-container {
+        display: flex;
+        align-items: center;
+      }
+
       .controls button {
         padding: 8px 16px;
         font-size: 16px;
+        cursor: pointer;
+      }
+
+      .color-button {
+        width: 32px;
+        height: 32px;
+        border: 2px solid #cccccc;
+        margin: 0px 2px;
         cursor: pointer;
       }
     </style>
@@ -53,17 +67,14 @@
     <!-- マス目は renderGrid がここに並べる。 -->
     <div id="canvas" class="pixel-canvas"></div>
 
-    <!-- 操作ボタン。クリック時の処理は main.ts で結びつけている。 -->
-    <div class="controls">
+    <div class="controls-container">
+      <!-- 操作ボタン。クリック時の処理は main.ts で結びつけている。 -->
+      <div class="controls">
       <button id="clear-button">全消去</button>
-    </div>
+     </div>
 
-    <div class="controls">
-      <button id="white-button">白</button>
-    </div>
-
-    <div class="controls">
-      <button id="black-button">黒</button>
+     <!-- カラーパレットのボタン。main.tsと結びついており、クラスが.color-buttonのボタンを呼び出す。 -->
+     <div id="palette"></div>
     </div>
 
     <!--
