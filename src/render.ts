@@ -2,23 +2,47 @@
 // 状態を受け取って画面(DOM)に表示するだけを担当する。
 // 塗るロジックは canvas.ts、クリックと処理の連携は main.ts が持つ。
 
-import { GRID_SIZE } from "./canvas";
+import { totalCells, paintCell, DEFAULT_COLOR} from "./canvas";
 
 // マス目（セル）を画面に並べて作る（完成済み）。
-// GRID_SIZE×GRID_SIZE の数だけ <div> を作り、#canvas に追加する。
+// totalCells の数だけ <div> を作り、#canvas に追加する。
 // 各セルには class="pixel-cell" を付ける（まとめて取得し、index 番目で1マスずつ狙う）。
-export function renderGrid(): void {
+const CELL_SIZE = 20;
+const setCanvasWidth = (cols: number): void => {
+  const container = document.getElementById("canvas");
+  if (!container) return;
+
+  container.style.width = `${cols * CELL_SIZE}px`;
+};
+
+export function renderGrid(rows: number, cols: number): void {
   const container = document.getElementById("canvas");
   if (container === null) return;
 
   // 念のため、すでにあるマスを消してから作り直す。
   container.textContent = "";
 
-  const total = GRID_SIZE * GRID_SIZE;
-  for (let index = 0; index < total; index++) {
+  // キャンバスの幅を設定する
+  setCanvasWidth(cols);
+
+  for (let index = 0; index < totalCells; index++) {
     const cell = document.createElement("div");
     cell.className = "pixel-cell";
     container.appendChild(cell);
+  }
+}
+
+// マスへのクリックイベントを結びつける関数を追加する
+export const gridEventsBind = (): void => {
+  const cells = document.getElementsByClassName("pixel-cell");
+  
+  for (let index = 0; index < totalCells; index++) {
+    cells[index].addEventListener("click", () => {
+      // 1. データ（配列）を更新
+      paintCell(index, DEFAULT_COLOR);
+      // 2. 画面（DOM）の見た目を更新
+      renderCell(index, DEFAULT_COLOR);
+    });
   }
 }
 

@@ -3,21 +3,32 @@
 // どのマスが何色かという情報とその操作だけに専念し、画面表示(DOM操作)はしない。
 // この層は完成済み。まずは読んで理解する。
 
-// 一辺のマス目の数（16 なら 16×16 = 256 マス）。
-export const GRID_SIZE = 16;
+// 数字を変更できるように変数で行数と列数の初期値をそれぞれ定義する
+export let rows = 16;
+export let cols = 16;
+export let totalCells: number;
+// 変数を使ってマス目の総数を計算する
+export const grid_creation = (newRows: number, newCols: number) => {
+  rows = newRows;
+  cols = newCols;
+  totalCells = rows * cols;
+  console.log(`グリッド更新: ${rows}行 × ${cols}列（合計: ${totalCells}マス）`);
+
+  // 3と4の処理（古いマスの削除 ＋ 新しいマスの生成・描画）をここに書く
+};
 
 // 塗るときの色と、空（消えている）マスの色。
 export const DEFAULT_COLOR = "#000000"; // 黒
 export const EMPTY_COLOR = "#ffffff"; // 白
 
-// 各マスの色を1次元配列で持つ（長さは GRID_SIZE×GRID_SIZE）。
+// 各マスの色を1次元配列で持つ（長さは rows×cols）。
 // export していないので外部からは直接触れず、下の関数を通して操作する。
 let cells: string[] = [];
 
 // 全マスを空(白)に戻す。
 export function clearCanvas(): void {
   cells = [];
-  for (let i = 0; i < GRID_SIZE * GRID_SIZE; i++) {
+  for (let i = 0; i < totalCells; i++) {
     cells.push(EMPTY_COLOR);
   }
   console.log("キャンバスを全消去しました");
