@@ -3,7 +3,7 @@
 // キャンバスを用意してマス目を描き、マスのクリックと全消去ボタンに処理を結びつける。
 // この層は完成済み（ステップ1で render.ts を実装すれば動く）。
 
-import { clearCanvas, paintCell, getCellColor, GRID_SIZE, DEFAULT_COLOR } from "./canvas";
+import { clearCanvas, paintCell, getCellColor, getPaintColor, setPaintColor, GRID_SIZE, PAINT_COLOR, PALETTE_COLORS } from "./canvas";
 import { renderGrid, renderCell } from "./render";
 
 function main(): void {
@@ -18,11 +18,14 @@ function main(): void {
   const cells = document.getElementsByClassName("pixel-cell");
   for (let index = 0; index < cells.length; index++) {
     cells[index].addEventListener("click", () => {
+      // PAINT_COLORを取得する。
+      getPaintColor();
+
       // データを更新する（このマスを黒で塗る）。
-      paintCell(index, DEFAULT_COLOR);
+      paintCell(index, PAINT_COLOR);
 
       // render.ts の renderCell を実装すると、ここでマスが塗られる（ステップ1）。
-      renderCell(index, DEFAULT_COLOR);
+      renderCell(index, PAINT_COLOR);
     });
   }
 
@@ -34,6 +37,23 @@ function main(): void {
       renderCell(i, getCellColor(i));
     }
   });
+
+  const paletteContainer = document.getElementById("palette");
+  console.log("paletteContainer:", paletteContainer);
+
+  // colorpaletteの要素の数だけ、その色に対応したボタンを生成する
+  PALETTE_COLORS.forEach((color) => {
+  const button = document.createElement("button");
+  button.style.backgroundColor = color;
+  button.className = "color-button";
+
+  // ボタンを押した時の処理
+  button.addEventListener("click", () => {
+    setPaintColor(color);
+  });
+
+  paletteContainer?.appendChild(button);
+});
 }
 
 main();

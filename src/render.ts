@@ -47,4 +47,3 @@ export function renderCell(index: number, color: string): void {
 
 // 拡張ポイント（ステップ2以降）。必要になったら関数を足す。
 //  - カラーパレットの色見本を並べる: 色ボタンを document.createElement で作って表示する関数を足す。
-//お試し
