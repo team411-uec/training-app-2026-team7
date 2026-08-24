@@ -33,20 +33,8 @@ export function renderGrid(rows: number, cols: number): void {
 }
 
 // マスへのクリックイベントを結びつける関数を追加する
-export const gridEventsBind = (): void => {
-  const cells = document.getElementsByClassName("pixel-cell");
-  
-  for (let index = 0; index < totalCells; index++) {
-    cells[index].addEventListener("click", () => {
-      //PAINT_COLORを取得する。
-      getPaintColor();
-      // 1. データ（配列）を更新
-      paintCell(index, PAINT_COLOR);
-      // 2. 画面（DOM）の見た目を更新
-      renderCell(index, PAINT_COLOR);
-    });
-  }
-}
+//この関数はfeature-drag.tsに移動した.
+
 
 // ステップ1（最初の課題）: この関数を実装する。
 //

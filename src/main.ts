@@ -4,7 +4,8 @@
 // この層は完成済み（ステップ1で render.ts を実装すれば動く）。
 
 import { clearCanvas, getCellColor, grid_creation, totalCells, setPaintColor, PALETTE_COLORS} from "./canvas";
-import { renderGrid, renderCell, gridEventsBind} from "./render";
+import { renderGrid, renderCell } from "./render";
+import { gridEventsBind } from "./feature-drag";
 
 function gridSetup(r: number, c: number): void {
   // グリッドの行数と列数を更新する
