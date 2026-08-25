@@ -63,6 +63,9 @@
         border-radius: 16px;
         margin: 0 auto;
         width: fit-content;
+        width: 95%;          /* 画面幅に応じたサイズ */
+        max-width: 600px;    /* お好みの最大幅（例: 500px〜700px） */
+        box-sizing: border-box;
       }
 
       .grid-size-input{
@@ -77,6 +80,8 @@
         padding: 4px 8px;
         border: 1px solid #cccccc;
         border-radius: 4px;
+        width: 70px;
+        box-sizing: border-box;
       }
       
       .grid-size-input input:focus {
@@ -110,10 +115,21 @@
       font-size: 0 は inline-block の間にできる余白(隙間)を消すため。 */
       .pixel-canvas {
         width: 320px;
+        height: fit-content;
         font-size: 0;
         border: 4px solid #8f948b;
         border-radius: 4px;
         margin: 16px auto;
+        flex-shrink: 0;       /* スクロール時にキャンバスが潰れないようにする */
+      }
+
+      .canvas-scroll {
+        width: 100%;          /* （.content）の幅に合わせる */
+        overflow: auto;     /* はみ出た部分を横スクロール可能にする */
+        max-height: 400px;
+        display: flex;
+        justify-content: safe center;
+        padding: 8px 8px;
       }
 
       /* 1マス。box-sizing: border-box で枠線を含めて 20px にし、ぴったり16列にする。 */
@@ -190,8 +206,10 @@
       <button id="generateBtn">マス目を生成</button>
     </div>
 
+    <div class="canvas-scroll">
     <!-- マス目は renderGrid がここに並べる。 -->
     <div id="canvas" class="pixel-canvas"></div>
+    </div>
 
     <div class="controls-container">
       <!-- 操作ボタン。クリック時の処理は main.ts で結びつけている。 -->
