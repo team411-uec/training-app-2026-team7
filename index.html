@@ -22,7 +22,7 @@
       .title {
         display: flex;
         flex-direction: column; /* 縦並びに指定 */
-        align-items: center;    /* 中央寄せ */
+        align-items: center;
         margin: 10px auto;
         gap: 0;
       }
@@ -32,7 +32,7 @@
         padding: 10px 20px;
         margin: 8px;
         background-color: #fbfbfa;
-        border: 4px solid #a2a4a2;
+        border: 4px solid #aab1aa;
         border-radius: 8px;
         color: #8a8c8c;
         font-size: 36px;
@@ -48,7 +48,7 @@
         display: inline-block;
         padding: 6px 16px;
         border-radius: 20px;
-        border: 3px solid #bbc4bf; /* タイトルの枠色と合わせる */
+        border: 3px solid #bbc4bf;
         margin: 12px auto;
       }
 
@@ -56,11 +56,11 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 10px; /* 中の要素同士の間隔 */
-        padding: 24px; /* 枠の内側の余白 */
-        background-color: #ffffff; /* 枠内の背景色 */
-        border: 2px solid #ccc; /* 囲み枠の線 */
-        border-radius: 12px; /* 角丸（お好みで調整） */
+        gap: 10px;
+        padding: 24px;
+        background-color: #ffffff;
+        border: 5px solid #c7cac6;
+        border-radius: 16px;
         margin: 0 auto;
         width: fit-content;
       }
@@ -69,18 +69,18 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 12px;          /* 各要素の間のすき間 */
-        flex-wrap: wrap; /* 各要素の間のすき間 */
+        gap: 12px;
+        flex-wrap: wrap;
       }
 
       .grid-size-input input {
         padding: 4px 8px;
-        border: 1px solid #ccc;
+        border: 1px solid #cccccc;
         border-radius: 4px;
       }
       
       .grid-size-input input:focus {
-        /* 1. ブラウザデフォルトの太枠を消す */
+        /* ブラウザデフォルトの太枠を消す */
         outline: none;
         border: 2px solid #eeba59;
       }
@@ -88,7 +88,6 @@
       .grid-size-input label {
         font-size: 16px;
         color: #444844;
-
       }
       
       .grid-size-input button {
@@ -108,11 +107,11 @@
       }
 
       /* マス目コンテナ。幅 = 20px × 16マス = 320px。
-         font-size: 0 は inline-block の間にできる余白(隙間)を消すため。 */
+      font-size: 0 は inline-block の間にできる余白(隙間)を消すため。 */
       .pixel-canvas {
         width: 320px;
         font-size: 0;
-        border: 4px solid #999;
+        border: 4px solid #8f948b;
         border-radius: 4px;
         margin: 16px auto;
       }
@@ -161,10 +160,10 @@
 
       .color-button:hover {
         border: 2px solid #eeba59;
-        transform: scale(1.05); /* 1.05倍に少し拡大する */
+        transform: scale(1.05);
       }
 
-      /* 選択されている筆の色のスタイル */
+      /* 選択された筆の色のボタンのスタイル */
       .color-button.paint {
         border: 3px solid #eeba59;
         transform: scale(1.05);
