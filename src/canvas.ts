@@ -66,3 +66,37 @@ export function setPaintColor(newColor: string) {
   PAINT_COLOR = newColor;
   console.log("塗るときの色:", PAINT_COLOR);
 }
+
+// ボタンを押した時の処理
+const handleColorClick = (event: Event, color: string): void => {
+  setPaintColor(color);
+
+  // paint がついているボタンからクラスを外す
+  document.querySelector(".color-button.paint")?.classList.remove("paint");
+
+  // 今クリックされたボタンに paint を付与する
+  const targetButton = event.currentTarget as HTMLButtonElement;
+  targetButton.classList.add("paint");
+};
+
+// 2. カラーボタンを生成する関数
+export const createColorButton = (color: string): HTMLButtonElement => {
+  const button = document.createElement("button");
+  button.style.backgroundColor = color;
+  button.className = "color-button";
+  // 初期選択色であれば paint クラスを付与
+  if (color === PAINT_COLOR) {
+    button.classList.add("paint");
+  }
+  button.addEventListener("click", (e) => handleColorClick(e, color));
+  return button;
+};
+
+// colorpaletteの要素の数だけ、その色に対応したボタンを生成する
+export const createPalette = (): void => {
+  PALETTE_COLORS.forEach((color) => {
+    const paletteContainer = document.getElementById  ("palette");
+    const button = createColorButton(color);
+    paletteContainer?.appendChild(button);
+  });
+};
